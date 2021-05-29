@@ -28,6 +28,11 @@ class Admin extends CI_Controller {
         $this->tools->view('0_blank');
     }
 
+    public function DataPengguna()
+    {
+        $this->tools->view('1_DataPengguna');
+    }
+
 }
 
 /* End of file Admin.php */
