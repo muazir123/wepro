@@ -4,7 +4,7 @@ class Tools
     public function __construct()
     {
         $this->CI =& get_instance();
-        // $this->CI->load->library('sidebar');
+        $this->CI->load->library('sidebar');
         $this->CI->load->model('model');
     }
 
@@ -18,11 +18,11 @@ class Tools
 
     public function view($halaman,$data = null)
     {
-        // $menu['MENU'] = $this->CI->sidebar->menu();
+        $menu['MENU'] = $this->CI->sidebar->menu();
         // $header['NAMA_PENGGUNA'] = $this->CI->model->ambilDataTertentuSelect('tb_pengguna','nama_pengguna',['kd_pengguna' => $this->CI->session->userdata('kd_pengguna')])->row();
         
         $this->CI->load->view('PARTIAL/head');
-        $this->CI->load->view('PARTIAL/sidebar');
+        $this->CI->load->view('PARTIAL/sidebar',$menu);
         $this->CI->load->view('PARTIAL/header');
         $this->CI->load->view("DALAM/$halaman",$data);
         $this->CI->load->view('PARTIAL/footer');
