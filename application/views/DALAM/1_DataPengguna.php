@@ -7,24 +7,83 @@
 					Data Pengguna
 				</div>
 				<div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Kd Pengguna</th>
-                                    <th>Nama</th>
-                                    <th>Nomor Hp</th>
-                                    <th>Nomor Alamat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
-                    </div>
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+								<tr>
+									<th>Kd Pengguna</th>
+									<th>Nama</th>
+									<th>Nomor Hp</th>
+									<th>Nomor Alamat</th>
+									<th>Opsi</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($datapengguna as $dt):?>
+								<tr>
+									<td><?=$kd_pengguna = $dt->kd_pengguna?></td>
+									<td><?=$dt->nama?></td>
+									<td><?=$dt->nomor_hp?></td>
+									<td><?=$dt->alamat?></td>
+									<td>
+										<div class="btn-group" role="group"
+											aria-label="Button group with nested dropdown">
+											<div class="btn-group" role="group">
+												<button id="btnGroupDrop1" type="button"
+													class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+													aria-haspopup="true" aria-expanded="false">
+													opsi
+												</button>
+												<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+													<button class="dropdown-item"
+														onclick="update('<?=$kd_pengguna?>', '<?=base_url('Admin/updateDataPengguna')?>')">Update</button>
+													<button class="dropdown-item text-danger"
+														onclick="hapus( '<?=base_url('Admin/hapusData')?>','kd_pengguna','<?=$kd_pengguna?>','tb_pengguna','DataPengguna')">Hapus</button>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<?php endforeach?>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- /.container-fluid -->
+
+
+<script>
+	function update(kdPengguna, alamat) {
+		Swal.fire({
+			title: 'Yakin Ingin Mengupadate data?',
+			text: "Tekan Iya jika yakin!",
+			icon: 'question',
+			showCancelButton: false,
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'Iya'
+		}).then((result) => {
+			if (result.isConfirmed) {
+                window.location.href = alamat+"/"+kdPengguna;
+			}
+		})
+	}
+
+	function hapus(alamat,kolom, kdData, tabel, alamatKembali) {
+		Swal.fire({
+			title: 'Yakin Ingin Menghapus data?',
+			text: "Tekan Iya jika yakin!",
+			icon: 'warning',
+			showCancelButton: false,
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'Iya'
+		}).then((result) => {
+			if (result.isConfirmed) {
+                window.location.href = alamat+"/"+kolom+"/"+kdData+"/"+tabel+"/"+alamatKembali;
+			}
+		})
+	}
+</script>
