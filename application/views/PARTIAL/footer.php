@@ -61,6 +61,9 @@
     <!-- Page level custom scripts -->
     <script src="<?=base_url('assets/')?>js/demo/datatables-demo.js"></script>
 
+    <!-- SWEAT JS -->
+    <script src="<?=base_url('assets/')?>js/sweatJs.js"></script>
+
 </body>
 
 </html>

@@ -4,28 +4,30 @@
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					Data Pengguna
+					Data Karyawan
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 							<thead>
 								<tr>
-									<th>Kd Pengguna</th>
+									<th>Kd Karyawan</th>
 									<th>Nama</th>
 									<th>Nomor Hp</th>
-									<th>Nomor Alamat</th>
+									<th>Jenis Kelamin</th>
+									<th>Alamat</th>
 									<th>Opsi</th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach($datapengguna as $dt):?>
-								<tr>
-									<td><?=$kd_pengguna = $dt->kd_pengguna?></td>
-									<td><?=$dt->nama?></td>
-									<td><?=$dt->nomor_hp?></td>
-									<td><?=$dt->alamat?></td>
-									<td>
+								<?php foreach ($data as $dt):?>
+                                    <tr>
+                                        <td><?=$kd_karyawan = $dt->kd_calon_karyawan?></td>
+                                        <td><?=$dt->nama?></td>
+                                        <td><?=$dt->nomor_hp?></td>
+                                        <td><?=$dt->jenis_kelamin?></td>
+                                        <td><?=$dt->alamat?></td>
+                                        <td>
 										<div class="btn-group" role="group"
 											aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
@@ -36,15 +38,15 @@
 												</button>
 												<div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 													<button class="dropdown-item"
-														onclick="update('<?=$kd_pengguna?>', '<?=base_url('Admin/updateDataPengguna')?>')">Update</button>
+														onclick="update('<?=$kd_karyawan?>', '<?=base_url('Admin/updateDataKarwayan')?>')">Update</button>
 													<button class="dropdown-item text-danger"
-														onclick="hapus( '<?=base_url('Admin/hapusData')?>','kd_pengguna','<?=$kd_pengguna?>','tb_pengguna','DataPengguna')">Hapus</button>
+														onclick="hapus( '<?=base_url('Admin/hapusData')?>','kd_calon_karyawan','<?=$kd_karyawan?>','tb_calon_karyawan','dataKaryawan')">Hapus</button>
 												</div>
 											</div>
 										</div>
-									</td>
-								</tr>
-								<?php endforeach?>
+										</td>
+                                    </tr>
+								<?php endforeach;?>
 							</tbody>
 						</table>
 					</div>

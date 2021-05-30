@@ -17,15 +17,15 @@ class Sidebar
         );
 
         $dataKaryawan = array(
-            array('label' => 'Data Karyawan','url' => '#'),
-            array('label' => 'Tambah Karyawan','url' => '#'),
+            array('label' => 'Data Karyawan','url' => base_url('Admin/dataKaryawan')),
+            array('label' => 'Tambah Karyawan','url' => base_url('Admin/createKaryawan')),
             // array('label' => 'Recycle Karyawan','url' => '#'),
         );
 
         $menu = array(
             array('child' => FALSE, 'child_menu' => NULL, 'url' => base_url('Admin'),'icon' => 'fas fa-tachometer-alt', 'label' => 'Dashboard'),
             array('child' => TRUE, 'child_menu' => $pengguna, 'url' => '#','icon' => 'fas fa-user', 'label' => 'Pengguna'),
-            array('child' => TRUE, 'child_menu' => $dataKaryawan, 'url' => '#','icon' => 'fas fa-tachometer-alt', 'label' => 'Karyawan'),
+            array('child' => TRUE, 'child_menu' => $dataKaryawan, 'url' => '#','icon' => 'fas fa-users', 'label' => 'Karyawan'),
         );
 
         return $menu;

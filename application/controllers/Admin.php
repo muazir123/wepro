@@ -114,6 +114,48 @@ class Admin extends CI_Controller {
         
     }
 
+    public function dataKaryawan()
+    {
+        $data['data'] = $this->model->ambilSemuaData('tb_calon_karyawan')->result();
+        $this->tools->view('3_DataKaryawan',$data);
+    }
+
+    public function updateDataKarwayan()
+    {
+        var_dump($_GET);
+    }
+
+    public function prosesUpdateKaryawan()
+    {
+        var_dump($_POST);
+    }
+
+    public function createKaryawan()
+    {
+        $this->tools->view('4_CreteKaryawan');
+    }
+
+    public function prosesCreateKaryawan()
+    {
+        $this->form_validation->set_rules($this->validasidata->cekInput('createKaryawan'));
+        if ($this->form_validation->run() == TRUE) {
+            $data = array(
+                'kd_calon_karyawan' => $this->tools->generateKode('tb_calon_karyawan','kd_calon_karyawan','KDC'),
+                'nama' => $this->input->post('nama'),
+                'nomor_hp' => $this->input->post('nmrtelpn'),
+                'jenis_kelamin' => $this->input->post('jenisKelamin'),
+                'alamat' => $this->input->post('alamat'),
+            );
+
+            $this->model->inputData('tb_calon_karyawan', $data);
+            $this->tools->Notif('Berhasil','Data Karyawan Berhasil disimpan','success','Admin/createKaryawan');
+        } else {
+            $this->tools->Notif('GAGAL','Periksa Kembali Data yang anda inputkan','error','Admin/createKaryawan');
+        }
+        
+    }
+
+
 }
 
 /* End of file Admin.php */
