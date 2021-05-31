@@ -122,12 +122,17 @@ class Admin extends CI_Controller {
 
     public function updateDataKarwayan()
     {
-        var_dump($_GET);
+        $kdKaryawan = $this->uri->segment(3);
+        $data['dataKaryawan'] = $this->model->ambilDataTertentu('tb_calon_karyawan',['kd_calon_karyawan' => $kdKaryawan])->row();
+        if($data['dataKaryawan'] != NULL){
+            $this->tools->view('4_CreteKaryawan',$data);
+        }else{
+            redirect(base_url('Login/Login'));
+        }
     }
 
     public function prosesUpdateKaryawan()
     {
-        var_dump($_POST);
     }
 
     public function createKaryawan()

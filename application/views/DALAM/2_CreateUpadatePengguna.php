@@ -61,7 +61,7 @@ $username = isset($username) ? $username : NULL;
 							<select class="form-control" id="exampleFormControlSelect1" required autocomplete="off" name="levelAkses">
 								<option disabled <?=$datapengguna == null ? 'selected': ''?>>Pilih salah satu</option>
 								<option value = "admin" <?=$datapengguna != null && $datapengguna->level_akses == 'admin' ? 'selected' : ''?>>admin</option>
-								<option value = "user"  <?=$datapengguna != null && $datapengguna->level_akses == 'user' ? 'selected' : ''?>>user</option>
+								<!-- <option value = "user"  <?=$datapengguna != null && $datapengguna->level_akses == 'user' ? 'selected' : ''?>>user</option> -->
 							</select>
 						</div>
 

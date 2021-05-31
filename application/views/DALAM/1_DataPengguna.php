@@ -30,7 +30,7 @@
 											aria-label="Button group with nested dropdown">
 											<div class="btn-group" role="group">
 												<button id="btnGroupDrop1" type="button"
-													class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+													class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
 													aria-haspopup="true" aria-expanded="false">
 													opsi
 												</button>
