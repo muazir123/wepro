@@ -26,7 +26,7 @@ class Sidebar
             array('child' => FALSE, 'child_menu' => NULL, 'url' => base_url('Admin'),'icon' => 'fas fa-tachometer-alt', 'label' => 'Dashboard'),
             array('child' => TRUE, 'child_menu' => $pengguna, 'url' => '#','icon' => 'fas fa-user', 'label' => 'Pengguna'),
             array('child' => TRUE, 'child_menu' => $dataKaryawan, 'url' => '#','icon' => 'fas fa-users', 'label' => 'Karyawan'),
-            array('child' => FALSE, 'child_menu' => NULL, 'url' => '#','icon' => 'fas fa-address-book', 'label' => 'Kriteria'),
+            array('child' => FALSE, 'child_menu' => NULL, 'url' => base_url('Admin/dataKriteria'),'icon' => 'fas fa-address-book', 'label' => 'Kriteria'),
             array('child' => FALSE, 'child_menu' => NULL, 'url' => '#','icon' => 'fas fa-code', 'label' => 'Nilai'),
             array('child' => FALSE, 'child_menu' => NULL, 'url' => '#','icon' => 'fas fa-trophy', 'label' => 'Ranking'),
         );

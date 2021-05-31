@@ -133,6 +133,26 @@ class Admin extends CI_Controller {
 
     public function prosesUpdateKaryawan()
     {
+        $this->form_validation->set_rules($this->validasidata->cekInput('updateKaryawan'));
+        
+        if ($this->form_validation->run() == TRUE) {
+            $data = array(
+                'nama' => $this->input->post('nama'),
+                'nomor_hp' => $this->input->post('nmrtelpn'),
+                'jenis_kelamin' => $this->input->post('jenisKelamin'),
+                'alamat' => $this->input->post('alamat'),
+            );
+
+            $where = array(
+                'kd_calon_karyawan' => $this->input->post('kd_karyawan')
+            );
+
+            $this->model->updateData('tb_calon_karyawan',$data,$where);
+            $this->tools->Notif('Berhasil','Data Berhasil disimpan','success','Admin/dataKaryawan');
+        } else {
+            $this->tools->Notif('GAGAL','Periksa Kembali Inputan yang anda masukan','error','Admin/updateDataKarwayan');
+        }
+        
     }
 
     public function createKaryawan()
@@ -160,6 +180,54 @@ class Admin extends CI_Controller {
         
     }
 
+    public function dataKriteria()
+    {
+        $kd_kriteria = $this->uri->segment(3);
+        $data['dataKriteria'] = $this->model->ambilDataTertentu('tb_kriteria',['kd_kriteria' => $kd_kriteria])->row();
+        $data['data'] = $this->model->ambilSemuaData('tb_kriteria')->result();
+        $this->tools->view('5_dataKriteria',$data);
+    }
+
+    public function prosesCreateKriteria()
+    {
+        $this->form_validation->set_rules($this->validasidata->cekInput('createKriteria'));
+        
+        if ($this->form_validation->run() == TRUE) {
+            $data = array(
+                'kd_kriteria' => $this->tools->generateKode('tb_kriteria','kd_kriteria','KDK'),
+                'kriteria' => $this->input->post('kriteria'),
+                'jenis' => $this->input->post('jenis'),
+                'bobot' => $this->input->post('bobot'),
+            );
+
+            $this->model->inputData('tb_kriteria',$data);
+            $this->tools->Notif('Berhasil','Data Kriteria Berhasil disimpan','success','Admin/dataKriteria');
+        } else {
+            $this->tools->Notif('Gagal','Periksa Kembali Inputan Anda','warning','Admin/dataKriteria');
+        }
+        
+    }
+
+    public function prosesUpdateKriteria()
+    {
+        $this->form_validation->set_rules($this->validasidata->cekInput('updateKriteria'));
+        
+        if ($this->form_validation->run() == TRUE) {
+            $data = array(
+                'kriteria' => $this->input->post('kriteria'),
+                'jenis' => $this->input->post('jenis'),
+                'bobot' => $this->input->post('bobot'),
+            );
+            $where = array(
+                'kd_kriteria' =>  $this->input->post('kd_kriteria'),
+            );
+
+            $this->model->updateData('tb_kriteria',$data,$where);
+            $this->tools->Notif('Berhasil','Data Kriteria Berhasil diupdate','success','Admin/dataKriteria');
+        } else {
+            $this->tools->Notif('Gagal','Periksa Kembali Inputan Anda','success','Admin/dataKriteria');
+        }
+    }
 
 }
 
