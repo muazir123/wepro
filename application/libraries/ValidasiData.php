@@ -72,6 +72,12 @@ class ValidasiData
                 ];
             break;
 
+            case 'dataNilai' :
+                $aturanValidasi = [
+                    ['field' => 'kd_calon_karyawan', 'label' => 'kd_calon_karyawan', 'rules' => 'required|min_length[3]'],
+                ];
+            break;
+
             default:
                 echo "PERIKSA ATURAN VALIDASI YANG ANDA MASUKAN";
                 break;

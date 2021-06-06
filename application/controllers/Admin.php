@@ -229,6 +229,37 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function tambahNilai()
+    {
+        $query = "SELECT tb_calon_karyawan.* FROM tb_calon_karyawan LEFT JOIN tb_nilai ON tb_calon_karyawan.kd_calon_karyawan = tb_nilai.kd_karyawan WHERE tb_nilai.kd_karyawan IS NULL";
+        $data['dataKaryawan'] = $this->model->query($query)->result();
+        $data['kriteria'] = $this->model->ambilSemuaData('tb_kriteria')->result();
+        $this->tools->view('6_createUpdateNilai',$data);
+    }
+
+    public function prosesCreateNilai()
+    {
+        $this->form_validation->set_rules($this->validasidata->cekInput('dataNilai'));
+        if ($this->form_validation->run() == TRUE) {
+            $data = $this->model->ambilDataKolomTertentu('tb_kriteria','kd_kriteria')->result();
+            foreach ($data as $dt){
+                $input = array(
+                    'kd_bobot' => $this->tools->generateKode('tb_nilai','kd_bobot','KDB'),
+                    'kd_karyawan' => $this->input->post('kd_calon_karyawan'),
+                    'kd_kriteria' => $dt->kd_kriteria,
+                    'nilai' => $this->input->post($dt->kd_kriteria)
+                );
+
+                $this->model->inputData('tb_nilai',$input);
+            }
+
+            $this->tools->Notif('BERHASIL','Data Berhasil disimpan','success','Admin/tambahNilai');
+        } else {
+            $this->tools->Notif('GAGAL','Periksa Kembali Data yang anda inputkan','error','Admin/tambahNilai');
+        }
+
+    }
+
 }
 
 /* End of file Admin.php */
