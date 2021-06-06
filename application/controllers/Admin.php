@@ -260,6 +260,29 @@ class Admin extends CI_Controller {
 
     }
 
+    public function updateDataNilai()
+    {
+
+    }
+
+
+    public function dataNilai()
+    {
+        $data['kriteria'] = $this->model->ambilSemuaData('tb_kriteria')->result();
+
+        $join = [['tb_nilai','tb_calon_karyawan.kd_calon_karyawan = tb_nilai.kd_karyawan','INNER JOIN']];
+        $data['datanilai'] = $this->model->jointTabel('tb_nilai.*','tb_calon_karyawan',$join)->result();
+
+        $query = "SELECT tb_calon_karyawan.* FROM tb_calon_karyawan INNER JOIN tb_nilai ON tb_calon_karyawan.kd_calon_karyawan = tb_nilai.kd_karyawan GROUP BY tb_calon_karyawan.kd_calon_karyawan";
+        $data['dataKaryawan'] = $this->model->query($query)->result(); 
+
+        $join = [['tb_nilai','tb_calon_karyawan.kd_calon_karyawan = tb_nilai.kd_karyawan','INNER JOIN']];
+        $data['datanilai'] = $this->model->jointTabel('tb_nilai.*','tb_calon_karyawan',$join)->result();
+        
+        $this->tools->view('7_dataNilai',$data);
+
+    }
+
 }
 
 /* End of file Admin.php */
